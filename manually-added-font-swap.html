@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard load + manually added font</title>
+    <style>
+        h1 {
+            font-family: 'montserratbold_italic', Arial, san-serif;
+        }
+        p {
+            font-family: Arial;
+        }
+    </style>
+    <!-- Load a webfont via CSS (so CSS-connected) -->
+    <link rel="stylesheet" href="fonts.css">
+    <script>
+        (function(){
+            var montserratBold = new FontFace('montserratbold_italic', 'url(fonts/montserrat-bolditalic-webfont.woff2)', {
+                display: 'swap',
+                weight: '700'
+            });
+
+            document.fonts.add(montserratBold);
+
+            // Wait for the fonts to become ready
+            document.fonts.ready.then(function() {
+                for (var allowed of document.fonts) console.dir(allowed);
+            });
+        })();
+    </script>
+</head>
+<body>
+    <h1>Standard font load + manually added font set to swap</h1>
+    <p>Here we the browser is adding the font (via `@font-face`) and we are manually adding the font with `font-display` set to `swap`. Manually added font comes after the CSS.</p>
+    <p>Note the `status: "loaded"` is now on the font that has been manually added. So our font injected via the CSS Font Loading API overules the 'CSS-Connected' font.</p>
+    <p>Console output for this is:</p>
+    <code>
+        <pre>
+FontFace
+    display: "auto"
+    family: "\"montserratbold_italic\""
+    featureSettings: "normal"
+    loaded: Promise { <​state>: "pending" }
+    status: "unloaded"
+    stretch: "normal"
+    style: "normal"
+    unicodeRange: "U+0-10FFFF"
+    variant: "normal"
+    variationSettings: "normal"
+    weight: "normal"
+    <​prototype>: FontFacePrototype { load: load(), family: Getter & Setter, style: Getter & Setter, … }
+
+FontFace
+    display: "swap"
+    family: "montserratbold_italic"
+    featureSettings: "normal"
+    loaded: Promise { <​state>: "fulfilled", <​value>: FontFace }
+    status: "loaded"
+    stretch: "normal"
+    style: "normal"
+    unicodeRange: "U+0-10FFFF"
+    variant: "normal"
+    variationSettings: "normal"
+    weight: "700"
+    <​prototype>: FontFacePrototype { load: load(), family: Getter & Setter, style: Getter & Setter, … }
+        </pre>
+    </code>
+</body>
+</html>

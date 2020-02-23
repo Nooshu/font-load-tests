@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard load</title>
+    <style>
+        h1 {
+            font-family: 'montserratbold_italic', Arial, san-serif;
+        }
+        p {
+            font-family: Arial;
+        }
+    </style>
+    <!-- Load a webfont via CSS (so CSS-connected) -->
+    <link rel="stylesheet" href="fonts.css">
+    <script>
+        (function(){
+            // Wait for the fonts to become ready
+            document.fonts.ready.then(function() {
+                for (var allowed of document.fonts) console.dir(allowed);
+            });
+        })();
+    </script>
+</head>
+<body>
+    <h1>Standard font load</h1>
+    <p>Here we have a simple stylesheet with fonts added via the `@font-face` rule. The below shows the output for the `FontFace` object associated with the font as constructed by the browser. This font is 'CSS-connected'. `font-display` is defaulting to `auto`.</p>
+    <p>Note the `status: "loaded"` (as it is the only one defined).</p>
+    <p>Console output for this is:</p>
+    <code>
+        <pre>
+FontFace
+    display: "auto"
+    family: "\"montserratbold_italic\""
+    featureSettings: "normal"
+    loaded: Promise { <​state>: "fulfilled", %3Cvalue>: FontFace }
+    status: "loaded"
+    stretch: "normal"
+    style: "normal"
+    unicodeRange: "U+0-10FFFF"
+    variant: "normal"
+    variationSettings: "normal"
+    weight: "normal"
+    <​prototype>: FontFacePrototype { load: load(), family: Getter & Setter, style: Getter & Setter, … }
+        </pre>
+    </code>
+</body>
+</html>
