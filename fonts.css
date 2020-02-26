@@ -1,3 +1,14 @@
+#global-header .header-wrapper:after,
+#global-header .header-wrapper .header-global:after,
+#global-header .header-wrapper .header-global .header-logo:after,
+#global-header .header-proposition #proposition-link:after,
+#global-header .header-proposition #proposition-links:after,
+#footer .footer-meta:after {
+ content:"";
+ display:block;
+ clear:both
+}
+
 @font-face {
     font-family: 'montserratbold_italic';
     src: url('fonts/montserrat-bolditalic-webfont.woff2') format('woff2'),
