@@ -25,7 +25,7 @@
 
             // Wait for the fonts to become ready
             document.fonts.ready.then(function() {
-                for (var allowed of document.fonts) console.dir(allowed);
+                for (var font of document.fonts) console.dir(font);
             });
         })();
     </script>
